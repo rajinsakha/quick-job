@@ -16,12 +16,18 @@ const JobSection = () => {
     employmentTypes: [],
   });
   console.log(filters);
-  return (
-    <div className="grid grid-cols-[250px_1fr] gap-8 items-start">
-      <JobFilters onFiltersChange={setFilters} />
 
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+      {/* Filters Section */}
+      <div className="hidden lg:block lg:col-span-1">
+        <JobFilters onFiltersChange={setFilters} />
+      </div>
+
+      {/* Job Listings Section */}
+      <div className="col-span-1 lg:col-span-2 space-y-6 w-full">
+        {/* Header with Sorting */}
+        <div className="flex flex-col gap-4 sm:flex-row justify-between items-center">
           <h2 className="text-lg">
             Showing: <span className="font-semibold">520 Filtered Jobs</span>
           </h2>
@@ -37,6 +43,7 @@ const JobSection = () => {
           </Select>
         </div>
 
+        {/* Job Cards */}
         <div className="space-y-4">
           <JobCard
             company="ZAPIER"

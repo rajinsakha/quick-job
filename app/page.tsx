@@ -5,7 +5,7 @@ import JobSection from "@/components/containers/JobSection";
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8 ">
+    <div className="mx-auto px-8 sm:px-16 lg:px-24  py-8 space-y-8 ">
       <Hero />
       <JobSection />
     </div>

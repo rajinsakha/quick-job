@@ -48,9 +48,9 @@ export default function JobSearchForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-white shadow-lg border p-4 rounded-full"
+        className="space-y-8 bg-white shadow-lg border p-4 sm:rounded-full"
       >
-        <div className="flex gap-4 w-full lg:max-w-3xl mx-auto">
+        <div className="flex flex-col max-sm:items-center sm:flex-row gap-4 w-full lg:max-w-3xl mx-auto">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-[10px] h-4 w-4 text-gray-400" />
             <FormField
@@ -71,7 +71,7 @@ export default function JobSearchForm() {
             />
           </div>
 
-          <div className="w-[1px] h-9 bg-gray-500 flex items-center justify-center"></div>
+          <div className="w-full h-[1px] sm:w-[1px] sm:h-9 bg-gray-500 flex items-center justify-center"></div>
    
           <div className="relative flex-1">
             <MapPin className="absolute left-3 top-[10px] h-4 w-4 text-gray-400" />
@@ -92,7 +92,7 @@ export default function JobSearchForm() {
               )}
             />
           </div>
-          <Button type="submit" className="bg-green-500 hover:bg-green-600 rounded-full">
+          <Button type="submit" className="w-[100px] bg-green-500 hover:bg-green-600 rounded-full">
             Find Jobs
           </Button>
         </div>
