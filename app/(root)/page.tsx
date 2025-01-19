@@ -1,7 +1,5 @@
-'use client'
 import Hero from "@/components/containers/Hero";
 import JobSection from "@/components/containers/JobSection";
-
 
 export default function Home() {
   return (
@@ -10,4 +8,4 @@ export default function Home() {
       <JobSection />
     </div>
   );
-} 
+}

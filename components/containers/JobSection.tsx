@@ -8,21 +8,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import JobFilters from "../form/FilterForm";
-import { IJobFilters } from "@/types/job";
+import { Button } from "../ui/button";
+import { SlidersHorizontal } from "lucide-react";
+import { ScrollArea } from "../ui/scroll-area";
+
 
 const JobSection = () => {
-  const [filters, setFilters] = useState<IJobFilters>({
-    employmentTypes: [],
-  });
-  console.log(filters);
+
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-16 items-start">
       {/* Filters Section */}
       <div className="hidden lg:block lg:col-span-1">
-        <JobFilters onFiltersChange={setFilters} />
+        <JobFilters />
       </div>
+
+      <div className="lg:hidden">
+          <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+            <SheetTrigger asChild>
+              <Button variant="outline" className="w-full">
+                <SlidersHorizontal className="mr-2 h-4 w-4" />
+                Filters
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-full sm:w-[540px]">
+              <SheetHeader>
+                <SheetTitle>Filters</SheetTitle>
+              </SheetHeader>
+              <ScrollArea className="mt-8 h-[80vh]">
+                <JobFilters />
+              </ScrollArea>
+            </SheetContent>
+          </Sheet>
+        </div>
 
       {/* Job Listings Section */}
       <div className="col-span-1 lg:col-span-2 space-y-6 w-full">

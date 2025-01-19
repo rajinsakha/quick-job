@@ -92,7 +92,7 @@ export default function JobSearchForm() {
               )}
             />
           </div>
-          <Button type="submit" className="w-[100px] bg-green-500 hover:bg-green-600 rounded-full">
+          <Button type="submit" className="w-[100px] bg-primary hover:bg-blue-700 rounded-full">
             Find Jobs
           </Button>
         </div>
