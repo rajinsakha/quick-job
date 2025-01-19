@@ -10,14 +10,12 @@ export interface JobFilters {
   categories: string[];
   employmentTypes: string[];
   seniority: string;
-  language: string;
 }
 
 const initialState: JobFilters = {
   categories: [],
   employmentTypes: [],
   seniority: "",
-  language: "",
 };
 
 const filters = createSlice({
@@ -33,12 +31,9 @@ const filters = createSlice({
     setSeniority: (state, action: PayloadAction<string>) => {
       state.seniority = action.payload;
     },
-    setLanguage: (state, action: PayloadAction<string>) => {
-      state.language = action.payload;
-    },
   },
 });
 
-export const { setCategories, setEmploymentTypes, setSeniority, setLanguage } =
+export const { setCategories, setEmploymentTypes, setSeniority } =
   filters.actions;
 export default filters.reducer;

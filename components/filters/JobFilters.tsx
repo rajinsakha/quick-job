@@ -41,7 +41,7 @@ const formSchema = z.object({
   categories: z.array(z.string()),
   employmentTypes: z.array(z.string()),
   seniority: z.string().optional(),
-  language: z.string().optional(),
+
 });
 
 const employmentTypes: EmploymentType[] = [
@@ -237,27 +237,7 @@ export default function JobFilters() {
           />
         </div>
 
-        <div className="space-y-4">
-          <h2 className="font-semibold">Language</h2>
-          <FormField
-            control={form.control}
-            name="language"
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select language" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="english">English</SelectItem>
-                  <SelectItem value="spanish">Spanish</SelectItem>
-                  <SelectItem value="french">French</SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </div>
+   
       </form>
     </Form>
   );

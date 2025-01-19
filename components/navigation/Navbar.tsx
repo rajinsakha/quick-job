@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import MobileNav from "./MobileNav";
 import { Button } from "@/components/ui/button";
+import Logo from "../ui/logo";
 
 export default function Navbar() {
   return (
@@ -10,10 +11,7 @@ export default function Navbar() {
 
       <nav className="hidden lg:flex gap-6">
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-extrabold text-primary">Quick</span>
-            <span className="text-2xl font-extrabold text-gray-800">Job</span>
-          </div>
+         <Logo />
         </Link>
         {/* <Link
           href="#"
@@ -25,7 +23,7 @@ export default function Navbar() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <Link href="/login" className="font-medium">
+        <Link href="/login" className="font-medium hover:text-primary">
           Login
         </Link>
         <Link href="">

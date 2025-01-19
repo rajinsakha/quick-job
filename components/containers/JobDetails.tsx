@@ -12,24 +12,24 @@ const JobDetails = () => {
         </div>
       </section>
 
-      <section className="flex gap-4 items-center">
+      <section className="flex gap-4 items-start sm:items-center">
         <Avatar className="rounded-lg h-16 w-16">
           <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback className="rouned-lg">EP</AvatarFallback>
+          <AvatarFallback className="rounded-lg">EP</AvatarFallback>
         </Avatar>
 
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-col min-[450px]:flex-row items-center gap-4">
-            <h4 className="text-lg">Moments Studio</h4>
-            <Dot className="size-4" />
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <h4 className="text-base font-medium sm:text-lg">Moments Studio</h4>
+            <Dot className="hidden sm:size-4" />
             <div className="flex items-center gap-2">
               <MapPin className="size-5" />
-              <span>Pokhara, Nepal</span>
+              <span className="max-sm:text-sm">Pokhara, Nepal</span>
             </div>
-            <Dot className="size-4" />
+            <Dot className="hidden sm:size-4" />
             <div className="flex items-center gap-2">
               <Phone className="size-5" />
-              <span>9818765432</span>
+              <span className="max-sm:text-sm">9818765432</span>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 'use client'
+import { MapPin, Timer } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function JobCard({
@@ -28,7 +29,7 @@ export default function JobCard({
           <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
             {company.charAt(0)}
           </div>
-          <div>
+          <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600">{company}</span>
               <span className="text-sm text-gray-400">•</span>
@@ -36,8 +37,8 @@ export default function JobCard({
             </div>
             <h3 className="font-semibold">{title}</h3>
             <div className="flex items-center gap-4 mt-1">
-              <span className="text-sm text-gray-600">{location}</span>
-              <span className="text-sm text-gray-600">{type}</span>
+              <span className="text-sm text-gray-600 flex items-center gap-1"> <MapPin className="size-4" /> {location}</span>
+              <span className="text-sm text-gray-600 flex items-center gap-1"><Timer className="size-4" /> {type}</span>
             </div>
           </div>
         </div>
