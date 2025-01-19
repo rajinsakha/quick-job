@@ -1,4 +1,8 @@
+'use client'
+import { useRouter } from "next/navigation";
+
 export default function JobCard({
+  id,
   company,
   title,
   location,
@@ -7,6 +11,7 @@ export default function JobCard({
   isNew,
   isFeatured,
 }: {
+  id:number,
   company: string;
   title: string;
   location: string;
@@ -15,8 +20,9 @@ export default function JobCard({
   isNew?: boolean;
   isFeatured?: boolean;
 }) {
+  const router = useRouter();
   return (
-    <div className="border rounded-lg p-4 hover:shadow-md transition-shadow">
+    <div className="border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer" onClick={()=>router.push(`/${id}`)}>
       <div className="flex justify-between items-start">
         <div className="flex gap-4">
           <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">

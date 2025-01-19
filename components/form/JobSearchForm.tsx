@@ -48,11 +48,11 @@ export default function JobSearchForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-white shadow-lg border p-4 sm:rounded-full"
+        className="space-y-8 bg-white shadow-lg border px-4 py-3 sm:rounded-full"
       >
         <div className="flex flex-col max-sm:items-center sm:flex-row gap-4 w-full lg:max-w-3xl mx-auto">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-[10px] h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-[9px] h-4 w-4 text-gray-400" />
             <FormField
               control={form.control}
               name="keyword"
@@ -61,7 +61,7 @@ export default function JobSearchForm() {
                   <FormControl>
                     <Input
                       placeholder="Job title or keyword"
-                      className="pl-9 border-none focus-visible:ring-0 shadow-none"
+                      className="pl-10 border-none focus-visible:ring-0 shadow-none"
                       {...field}
                     />
                   </FormControl>
@@ -74,7 +74,7 @@ export default function JobSearchForm() {
           <div className="w-full h-[1px] sm:w-[1px] sm:h-9 bg-gray-500 flex items-center justify-center"></div>
    
           <div className="relative flex-1">
-            <MapPin className="absolute left-3 top-[10px] h-4 w-4 text-gray-400" />
+            <MapPin className="absolute left-3 top-[9px] h-4 w-4 text-gray-400" />
             <FormField
               control={form.control}
               name="location"
@@ -83,7 +83,7 @@ export default function JobSearchForm() {
                   <FormControl>
                     <Input
                       placeholder="City, state or zip"
-                      className="pl-9 border-none focus-visible:ring-0 shadow-none"
+                      className="pl-10 border-none focus-visible:ring-0 shadow-none"
                       {...field}
                     />
                   </FormControl>

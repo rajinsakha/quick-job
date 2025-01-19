@@ -125,7 +125,7 @@ export default function JobFilters() {
 
   return (
     <Form {...form}>
-      <form className="space-y-6">
+      <form className="space-y-6 max-lg:px-6">
         <div className="space-y-4">
           <h2 className="font-semibold">Job Categories</h2>
           <Accordion

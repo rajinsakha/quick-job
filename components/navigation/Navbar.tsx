@@ -1,17 +1,19 @@
 import Link from "next/link";
-import { MountainIcon } from "lucide-react";
+
 import MobileNav from "./MobileNav";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-10 flex h-16 w-full shrink-0 items-center justify-between px-4 md:px-6 bg-white dark:bg-gray-900 shadow-sm">
+    <header className="sticky top-0 z-10 flex h-16 w-full shrink-0 items-center justify-between px-8 sm:px-16 lg:px-24 bg-white dark:bg-gray-900 shadow-sm">
       <MobileNav />
 
       <nav className="hidden lg:flex gap-6">
-        <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-          <MountainIcon className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+        <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl font-extrabold text-primary">Quick</span>
+            <span className="text-2xl font-extrabold text-gray-800">Job</span>
+          </div>
         </Link>
         {/* <Link
           href="#"
