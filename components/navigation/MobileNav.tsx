@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
+
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "../ui/logo";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 
 const MobileNav = () => {
   return (
@@ -17,20 +18,23 @@ const MobileNav = () => {
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
           <Logo />
         </Link>
-        {/* <div className="grid gap-2 py-6">
-            <Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-              Home
-            </Link>
-            <Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-              About
-            </Link>
-            <Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-              Services
-            </Link>
-            <Link href="#" className="flex w-full items-center py-2 text-lg font-semibold" prefetch={false}>
-              Contact
-            </Link>
-          </div> */}
+
+        <div className="grid gap-2 py-6">
+          <Link
+            href="/"
+            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            prefetch={false}
+          >
+            Find Jobs
+          </Link>
+          <Link
+            href="/rooms"
+            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            prefetch={false}
+          >
+            Find Rooms
+          </Link>
+        </div>
       </SheetContent>
     </Sheet>
   );

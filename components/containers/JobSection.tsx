@@ -1,4 +1,4 @@
-import JobCard from "../JobCard";
+import JobCard from "../cards/JobCard";
 import {
   Select,
   SelectContent,
@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select";
 
 import JobFilters from "../filters/JobFilters";
-import MobileJobFilters from "../filters/MobileJobFilters";
+import MobileFilters from "../filters/MobileFilters";
 
 const JobSection = () => {
   return (
@@ -19,7 +19,7 @@ const JobSection = () => {
       </div>
 
       <div className="lg:hidden">
-        <MobileJobFilters />
+        <MobileFilters type="Job" />
       </div>
 
       {/* Job Listings Section */}
@@ -44,7 +44,7 @@ const JobSection = () => {
         {/* Job Cards */}
         <div className="space-y-4">
           <JobCard
-          id={1}
+            id={1}
             company="ZAPIER"
             title="Head Tech - Simulation and Modelling"
             location="Mumbai"
@@ -53,7 +53,7 @@ const JobSection = () => {
             isNew
           />
           <JobCard
-          id={2}
+            id={2}
             company="QUICKBOOKS"
             title="Software Developer/Sr. Software Developer"
             location="Bangalore"

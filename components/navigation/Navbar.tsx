@@ -9,17 +9,26 @@ export default function Navbar() {
     <header className="sticky top-0 z-10 flex h-16 w-full shrink-0 items-center justify-between px-8 sm:px-16 lg:px-24 bg-white dark:bg-gray-900 shadow-sm">
       <MobileNav />
 
-      <nav className="hidden lg:flex gap-6">
+      <nav className="hidden lg:flex items-center gap-16">
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-         <Logo />
+          <Logo />
         </Link>
-        {/* <Link
-          href="#"
-          className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus:bg-gray-800 dark:focus:text-gray-50 dark:data-[active]:bg-gray-800/50 dark:data-[state=open]:bg-gray-800/50"
-          prefetch={false}
-        >
-          Find Jobs
-        </Link> */}
+        <div className="flex gap-6">
+          <Link
+            href="/"
+            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            prefetch={false}
+          >
+            Find Jobs
+          </Link>
+          <Link
+            href="/rooms"
+            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            prefetch={false}
+          >
+            Find Rooms
+          </Link>
+        </div>
       </nav>
 
       <div className="flex items-center gap-4">

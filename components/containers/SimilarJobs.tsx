@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollArea } from "../ui/scroll-area";
-import JobCard from "../JobCard";
+import JobCard from "../cards/JobCard";
 
 const SimilarJobs = () => {
   return (

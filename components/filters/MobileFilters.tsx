@@ -1,18 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+
 import { Button } from "../ui/button";
 import { SlidersHorizontal } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import JobFilters from "./JobFilters";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import RoomFilters from "./RoomFilters";
 
-const MobileJobFilters = () => {
+
+const MobileFilters = ({type}:{type:string}) => {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   return (
     <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
@@ -27,11 +24,11 @@ const MobileJobFilters = () => {
           <SheetTitle>Filters</SheetTitle>
         </SheetHeader>
         <ScrollArea className="mt-8 h-[80vh] ">
-          <JobFilters />
+          {type === "Job" ? <JobFilters /> : <RoomFilters />}
         </ScrollArea>
       </SheetContent>
     </Sheet>
   );
 };
 
-export default MobileJobFilters;
+export default MobileFilters;
