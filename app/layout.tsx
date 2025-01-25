@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/lib/redux/provider";
+import sharedMetadata from "@/lib/shared-metadata";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Find One-Day and Part-Time Jobs | Quick Job Portal",
-  description:
-    "Discover one-day jobs and part-time opportunities tailored to your schedule. Quick Job Portal connects job seekers with flexible, high-quality work options. Start earning today!",
-};
+  ...sharedMetadata,
+  // Add or override any page-specific metadata here
+}
 
 export default function RootLayout({
   children,
