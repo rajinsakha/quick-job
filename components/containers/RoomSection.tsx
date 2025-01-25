@@ -28,7 +28,7 @@ const RoomSection = () => {
         <div className="flex flex-col gap-4 sm:flex-row justify-between items-center">
           <h2 className="text-lg">
             Showing: <span className="font-semibold">120 Filtered Rooms</span>
-          </h2>
+        </h2>
           <Select defaultValue="newest">
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Sort by" />

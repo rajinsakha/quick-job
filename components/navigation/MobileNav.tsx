@@ -1,11 +1,14 @@
+"use client";
 import { Button } from "@/components/ui/button";
 
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "../ui/logo";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
+import { usePathname } from "next/navigation";
 
 const MobileNav = () => {
+  const path = usePathname();
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -22,14 +25,18 @@ const MobileNav = () => {
         <div className="grid gap-2 py-6">
           <Link
             href="/"
-            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            className={`text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px] ${
+              path === "/" && "!border-primary text-primary font-medium"
+            }`}
             prefetch={false}
           >
             Find Jobs
           </Link>
           <Link
             href="/rooms"
-            className="text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px]"
+            className={`text-base border-b border-transparent hover:border-primary hover:text-primary py-[2px] ${
+              path === "/rooms" && "!border-primary text-primary font-medium"
+            }`}
             prefetch={false}
           >
             Find Rooms
