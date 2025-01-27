@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +7,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { loginFormSchema } from "@/schema/auth";
 import { z } from "zod";
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { EyeOffIcon, EyeIcon } from "lucide-react";
 import { Button } from "../ui/button";
@@ -17,8 +24,8 @@ import { Separator } from "../ui/separator";
 type UserFormValue = z.infer<typeof loginFormSchema>;
 
 export default function LoginForm() {
-//   const dispatch = useAppDispatch();
-//   console.log(dispatch);
+  //   const dispatch = useAppDispatch();
+  //   console.log(dispatch);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -66,16 +73,18 @@ export default function LoginForm() {
   return (
     <>
       <div className="flex flex-col space-y-2 pb-2 ">
-        <h1 className="text-2xl font-semibold text-black tracking-tight">
+        <h1 className="text-3xl font-semibold text-black tracking-tight">
           Login
         </h1>
-        <p className="text-sm text-muted-foreground">Welcome to Quick Job</p>
+        <p className="text-sm text-muted-foreground">
+          Welcome to WorkSpace Nepal
+        </p>
       </div>
       <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-2 pt-2 w-full"
+          className="space-y-4 pt-6 w-full"
         >
           <FormField
             control={form.control}
@@ -89,6 +98,7 @@ export default function LoginForm() {
                     placeholder="Enter your email..."
                     disabled={loading}
                     {...field}
+                    className="h-10"
                   />
                 </FormControl>
                 <FormMessage />
@@ -108,6 +118,7 @@ export default function LoginForm() {
                       placeholder="Password..."
                       disabled={loading}
                       {...field}
+                      className="h-10"
                     />
                     <Button
                       type="button"
@@ -132,7 +143,7 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-          <div className="flex items-center justify-between !mt-2">
+          <div className="flex items-center justify-between !mt-4">
             <FormField
               control={form.control}
               name="rememberMe"
@@ -165,6 +176,17 @@ export default function LoginForm() {
           </Button>
         </form>
       </Form>
+
+      <Separator />
+
+      <div className="pt-4 flex items-center justify-center">
+        <p>
+          Don&apos;t have an account?{" "}
+          <Link href="/sign-up" className="underline text-base">
+            Register Here
+          </Link>
+        </p>
+      </div>
     </>
   );
 }

@@ -61,9 +61,9 @@ export default function SignUpForm() {
     <>
       <div className="flex flex-col space-y-2 pb-2 ">
         <h1 className="text-2xl font-semibold text-black tracking-tight">
-          Sign Up
+          Register
         </h1>
-        <p className="text-sm text-muted-foreground">Welcome to Quick Job</p>
+        <p className="text-sm text-muted-foreground">Welcome to WorkSpace Nepal</p>
       </div>
       <Separator />
       <Form {...form}>
