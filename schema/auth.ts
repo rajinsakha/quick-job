@@ -10,22 +10,23 @@ export const loginFormSchema = z.object({
   rememberMe: z.boolean().default(false).optional(),
 });
 
-export const signUpFormSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required" })
-    .email({ message: "Please enter a valid email address" }),
-  password: z
-    .string({ required_error: "Password is required" })
-    .min(6, { message: "Password must be at least 6 characters" }),
- confirm_password:    z.string({ required_error: "Password is required" })
- .min(6, { message: "Password must be at least 6 characters" }),
-}) .refine((data) => data.password === data.confirm_password, {
-  message: "New Password and Confirm Password must be same",
-  path: ["confirm_password"],
-});
-
-
-
+export const signUpFormSchema = z
+  .object({
+    email: z
+      .string({ required_error: "Email is required" })
+      .email({ message: "Please enter a valid email address" }),
+    password: z
+      .string({ required_error: "Password is required" })
+      .min(6, { message: "Password must be at least 6 characters" }),
+    confirm_password: z
+      .string({ required_error: "Password is required" })
+      .min(6, { message: "Password must be at least 6 characters" }),
+    accept_terms: z.boolean(),
+  })
+  .refine((data) => data.password === data.confirm_password, {
+    message: "New Password and Confirm Password must be same",
+    path: ["confirm_password"],
+  });
 
 export const resetPasswordFormSchema = z.object({
   email: z.string().email({ message: "Enter a valid email address" }),
