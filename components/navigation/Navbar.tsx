@@ -39,8 +39,8 @@ export default function Navbar() {
       </nav>
 
       <div className="flex items-center gap-4">
-        <Link href="/post" className="mr-8">
-          <Button className="rounded-full" variant='outline'  >Post Jobs / Room</Button>
+        <Link href="/post" className="mr-8 max-lg:hidden">
+          <Button className="rounded-full" variant='outline'>Post Jobs / Room</Button>
         </Link>
         <Link href="/login" className="font-medium hover:text-primary">
           Login

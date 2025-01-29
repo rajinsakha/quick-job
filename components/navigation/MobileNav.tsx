@@ -41,6 +41,9 @@ const MobileNav = () => {
           >
             Find Rooms
           </Link>
+          <Link href="/post" className="mt-8">
+          <Button className="rounded-full" variant='outline'>Post Jobs / Room</Button>
+        </Link>
         </div>
       </SheetContent>
     </Sheet>
