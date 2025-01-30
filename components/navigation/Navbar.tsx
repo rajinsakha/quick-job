@@ -12,7 +12,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-10 flex h-16 w-full shrink-0 items-center justify-between px-8 sm:px-16 lg:px-24 bg-white dark:bg-gray-900 shadow-sm">
       <MobileNav />
 
-      <nav className="hidden lg:flex items-center gap-16">
+      <nav className="hidden lg:flex items-center gap-32">
         <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
           <Logo />
         </Link>

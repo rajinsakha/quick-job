@@ -29,7 +29,7 @@ const MobileNav = () => {
               path === "/" && "!border-primary text-primary font-medium"
             }`}
             prefetch={false}
-          >
+        >
             Find Jobs
           </Link>
           <Link

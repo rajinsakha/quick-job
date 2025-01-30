@@ -1,18 +1,37 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { Button } from "@/components/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Switch } from "@/components/ui/switch"
+import { useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
 
-const roomCategories = ["Apartments", "Houses", "Shared Spaces", "Student Housing"]
+const roomCategories = [
+  "Apartments",
+  "Houses",
+  "Shared Spaces",
+  "Student Housing",
+];
 
 const amenities = [
   { id: "wifi", label: "Wi-Fi" },
@@ -23,7 +42,7 @@ const amenities = [
   { id: "laundry", label: "Laundry" },
   { id: "pets", label: "Pet Friendly" },
   { id: "balcony", label: "Balcony" },
-]
+];
 
 const roomFormSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
@@ -31,31 +50,60 @@ const roomFormSchema = z.object({
   category: z.string().min(1, "Please select a category"),
   location: z.string().min(3, "Location must be at least 3 characters"),
   roomType: z.enum(["entire_place", "private_room", "shared_room"]),
-  bedrooms: z.number().int().positive("Number of bedrooms must be a positive integer"),
-  bathrooms: z.number().positive("Number of bathrooms must be a positive number"),
+  bedrooms: z
+    .number()
+    .int()
+    .positive("Number of bedrooms must be a positive integer"),
+  bathrooms: z
+    .number()
+    .positive("Number of bathrooms must be a positive number"),
   price: z.number().positive("Price must be a positive number"),
   amenities: z.array(z.string()).optional(),
   availableFrom: z.string(),
-  minimumStay: z.number().int().positive("Minimum stay must be a positive integer"),
+  minimumStay: z
+    .number()
+    .int()
+    .positive("Minimum stay must be a positive integer"),
   contactEmail: z.string().email("Invalid email address"),
   contactPhone: z.string().regex(/^(\+977)?[0-9]{10}$/, "Invalid phone number"),
   isNegotiable: z.boolean(),
   isUrgent: z.boolean(),
-})
+});
 
-type RoomFormValues = z.infer<typeof roomFormSchema>
+type RoomFormValues = z.infer<typeof roomFormSchema>;
 
-export default function RoomPostingForm() {
+interface RoomPostingFormProps {
+  onProgressUpdate: (progress: number) => void;
+}
+
+export default function RoomPostingForm({
+  onProgressUpdate,
+}: RoomPostingFormProps) {
   const form = useForm<RoomFormValues>({
     resolver: zodResolver(roomFormSchema),
     defaultValues: {
       isNegotiable: false,
       isUrgent: false,
     },
-  })
+  });
+
+  useEffect(() => {
+    const subscription = form.watch((value, { type }) => {
+      if (type === "change") {
+        const totalFields = Object.keys(roomFormSchema.shape).length - 2; // Subtract 2 for isNegotiable and isUrgent
+        const filledFields = Object.entries(value).filter(
+          ([key, val]) =>
+            key !== "isNegotiable" && key !== "isUrgent" && Boolean(val)
+        ).length;
+        const progress = (filledFields / totalFields) * 100;
+        onProgressUpdate(progress);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [form, onProgressUpdate]);
 
   function onSubmit(data: RoomFormValues) {
-    console.log(data)
+    console.log(data);
     // Here you would typically send the data to your backend
   }
 
@@ -71,7 +119,9 @@ export default function RoomPostingForm() {
               <FormControl>
                 <Input placeholder="Enter room title" {...field} />
               </FormControl>
-              <FormDescription>A brief title for your room posting</FormDescription>
+              <FormDescription>
+                A brief title for your room posting
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -84,9 +134,15 @@ export default function RoomPostingForm() {
             <FormItem>
               <FormLabel>Room Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="Describe the room" className="resize-none" {...field} />
+                <Textarea
+                  placeholder="Describe the room"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>Provide details about the room and its features</FormDescription>
+              <FormDescription>
+                Provide details about the room and its features
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -112,7 +168,9 @@ export default function RoomPostingForm() {
                   ))}
                 </SelectContent>
               </Select>
-              <FormDescription>Choose the most appropriate category for your room</FormDescription>
+              <FormDescription>
+                Choose the most appropriate category for your room
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -127,7 +185,9 @@ export default function RoomPostingForm() {
               <FormControl>
                 <Input placeholder="Enter room location" {...field} />
               </FormControl>
-              <FormDescription>Specify the location of the room</FormDescription>
+              <FormDescription>
+                Specify the location of the room
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -220,7 +280,9 @@ export default function RoomPostingForm() {
             <FormItem>
               <div className="mb-4">
                 <FormLabel className="text-base">Amenities</FormLabel>
-                <FormDescription>Select all the amenities that apply</FormDescription>
+                <FormDescription>
+                  Select all the amenities that apply
+                </FormDescription>
               </div>
               {amenities.map((item) => (
                 <FormField
@@ -229,20 +291,32 @@ export default function RoomPostingForm() {
                   name="amenities"
                   render={({ field }) => {
                     return (
-                      <FormItem key={item.id} className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormItem
+                        key={item.id}
+                        className="flex flex-row items-start space-x-3 space-y-0"
+                      >
                         <FormControl>
                           <Checkbox
                             checked={field.value?.includes(item.id)}
                             onCheckedChange={(checked) => {
                               return checked
-                                ? field.onChange([...(field.value || []), item.id])
-                                : field.onChange(field.value?.filter((value) => value !== item.id))
+                                ? field.onChange([
+                                    ...(field.value || []),
+                                    item.id,
+                                  ])
+                                : field.onChange(
+                                    field.value?.filter(
+                                      (value) => value !== item.id
+                                    )
+                                  );
                             }}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">{item.label}</FormLabel>
+                        <FormLabel className="font-normal">
+                          {item.label}
+                        </FormLabel>
                       </FormItem>
-                    )
+                    );
                   }}
                 />
               ))}
@@ -258,7 +332,7 @@ export default function RoomPostingForm() {
             <FormItem className="flex flex-col">
               <FormLabel>Available From</FormLabel>
               <FormControl>
-                <Input type="date" {...field} onChange={(e) => field.onChange(new Date(e.target.value))} />
+                <Input type="date" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -291,7 +365,11 @@ export default function RoomPostingForm() {
             <FormItem>
               <FormLabel>Contact Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="Enter contact email" {...field} />
+                <Input
+                  type="email"
+                  placeholder="Enter contact email"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -305,9 +383,15 @@ export default function RoomPostingForm() {
             <FormItem>
               <FormLabel>Contact Phone</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="Enter contact phone" {...field} />
+                <Input
+                  type="tel"
+                  placeholder="Enter contact phone"
+                  {...field}
+                />
               </FormControl>
-              <FormDescription>Enter a valid Nepali phone number (e.g., +9779812345678)</FormDescription>
+              <FormDescription>
+                Enter a valid Nepali phone number (e.g., +9779812345678)
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -323,7 +407,10 @@ export default function RoomPostingForm() {
                 <FormDescription>Is the price negotiable?</FormDescription>
               </div>
               <FormControl>
-                <Switch checked={field.value} onCheckedChange={field.onChange} />
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -336,10 +423,15 @@ export default function RoomPostingForm() {
             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <FormLabel className="text-base">Urgent</FormLabel>
-                <FormDescription>Mark this room posting as urgent</FormDescription>
+                <FormDescription>
+                  Mark this room posting as urgent
+                </FormDescription>
               </div>
               <FormControl>
-                <Switch checked={field.value} onCheckedChange={field.onChange} />
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -348,6 +440,5 @@ export default function RoomPostingForm() {
         <Button type="submit">Submit Room Posting</Button>
       </form>
     </Form>
-  )
+  );
 }
-

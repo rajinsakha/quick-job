@@ -20,7 +20,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
 import { Checkbox } from "../ui/checkbox";
-
+import { motion } from "framer-motion";
 type UserFormValue = z.infer<typeof signUpFormSchema>;
 
 export default function SignUpForm() {
@@ -65,20 +65,22 @@ export default function SignUpForm() {
   };
 
   return (
-    <>
-      <div className="flex flex-col space-y-2 pb-2 ">
-        <h1 className="text-2xl font-semibold text-black tracking-tight">
-          Register
-        </h1>
+    <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="w-full max-w-md mx-auto space-y-6">
+      <div className="flex flex-col space-y-2 ">
+        <h1 className="text-3xl font-semibold tracking-tight">Register</h1>
         <p className="text-sm text-muted-foreground">
-          Welcome to WorkSpace Nepal
+         Welcome to WorkSpace Nepal
         </p>
       </div>
       <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 pt-6 w-full"
+          className="space-y-4 w-full"
         >
           <FormField
             control={form.control}
@@ -112,7 +114,7 @@ export default function SignUpForm() {
                       placeholder="Password..."
                       disabled={loading}
                       {...field}
-                        className="h-10"
+                      className="h-10"
                     />
                     <Button
                       type="button"
@@ -150,7 +152,7 @@ export default function SignUpForm() {
                       placeholder="Re-enter Password"
                       disabled={loading}
                       {...field}
-                        className="h-10"
+                      className="h-10"
                     />
                     <Button
                       type="button"
@@ -198,7 +200,11 @@ export default function SignUpForm() {
                   />
                 </FormControl>
                 <FormLabel className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  I hereby accept all the terms and conditions of WorkSpace Nepal
+                  I hereby accept all the{" "}
+                  <Link href="/terms" className="underline hover:text-primary">
+                    Terms and Conditions
+                  </Link>{" "}
+                  of WorkSpace Nepal.
                 </FormLabel>
               </FormItem>
             )}
@@ -213,6 +219,6 @@ export default function SignUpForm() {
           </Button>
         </form>
       </Form>
-    </>
+    </motion.div>
   );
 }

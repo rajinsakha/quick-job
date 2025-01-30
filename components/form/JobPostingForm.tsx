@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import {useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -36,7 +36,11 @@ const jobFormSchema = z.object({
 
 type JobFormValues = z.infer<typeof jobFormSchema>
 
-export default function JobPostingForm() {
+interface JobPostingFormProps {
+  onProgressUpdate: (progress: number) => void
+}
+
+export default function JobPostingForm({ onProgressUpdate }: JobPostingFormProps) {
   const form = useForm<JobFormValues>({
     resolver: zodResolver(jobFormSchema),
     defaultValues: {
@@ -45,6 +49,24 @@ export default function JobPostingForm() {
     },
   })
 
+  // const [formProgress, setFormProgress] = useState(0)
+
+  useEffect(() => {
+    const subscription = form.watch((value, {  type }) => {
+      if (type === "change") {
+        const totalFields = Object.keys(jobFormSchema.shape).length - 2
+        const filledFields = Object.entries(value).filter(
+          ([key, val]) =>
+            key !== "isNegotiable" && key !== "isUrgent" && Boolean(val)
+        ).length;
+        const progress = (filledFields / totalFields) * 100
+        // setFormProgress(progress)
+        onProgressUpdate(progress)
+      }
+    })
+    return () => subscription.unsubscribe()
+  }, [form, onProgressUpdate])
+
   function onSubmit(data: JobFormValues) {
     console.log(data)
     // Here you would typically send the data to your backend
@@ -52,7 +74,7 @@ export default function JobPostingForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="title"

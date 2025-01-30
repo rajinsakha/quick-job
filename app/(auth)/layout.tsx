@@ -6,7 +6,7 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       <div className="relative hidden bg-muted lg:block">
         <picture>
           <img
-            src="/placeholder.svg"
+            src="/login.webp"
             alt="Image"
             className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
           />

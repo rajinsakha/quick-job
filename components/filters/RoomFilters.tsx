@@ -144,7 +144,7 @@ export default function RoomFilters() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Slider min={0} max={5000} step={100} value={field.value} onValueChange={field.onChange} />
+                  <Slider min={0} max={5000} step={100} value={field.value} onValueChange={field.onChange} className="" />
                 </FormControl>
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>${field.value[0]}</span>

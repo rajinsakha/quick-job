@@ -60,7 +60,7 @@ export default function RoomSearchForm() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="Job title or keyword"
+                      placeholder="Room title or keyword"
                       className="pl-10 border-none focus-visible:ring-0 shadow-none"
                       {...field}
                     />

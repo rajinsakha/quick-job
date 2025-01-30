@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { motion } from "framer-motion";
 import { Checkbox } from "@/components/ui/checkbox";
 import { loginFormSchema } from "@/schema/auth";
 import { z } from "zod";
@@ -71,20 +71,23 @@ export default function LoginForm() {
   };
 
   return (
-    <>
-      <div className="flex flex-col space-y-2 pb-2 ">
-        <h1 className="text-3xl font-semibold text-black tracking-tight">
-          Login
-        </h1>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-md mx-auto space-y-6"
+    >
+      <div className="flex flex-col space-y-2 ">
+        <h1 className="text-3xl font-semibold tracking-tight">Welcome back</h1>
         <p className="text-sm text-muted-foreground">
-          Welcome to WorkSpace Nepal
+          Enter your credentials to sign in to your account
         </p>
       </div>
       <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 pt-6 w-full"
+          className="space-y-4  w-full"
         >
           <FormField
             control={form.control}
@@ -180,13 +183,16 @@ export default function LoginForm() {
       <Separator />
 
       <div className="pt-4 flex items-center justify-center">
-        <p>
+        <p className="text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <Link href="/sign-up" className="underline text-base">
+          <Link
+            href="/sign-up"
+            className="underline underline-offset-4 hover:text-primary"
+          >
             Register Here
           </Link>
         </p>
       </div>
-    </>
+    </motion.div>
   );
 }
