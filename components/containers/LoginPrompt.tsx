@@ -1,7 +1,7 @@
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { LockIcon, UserPlus } from "lucide-react"
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { LockIcon, UserPlus } from "lucide-react";
 
 export default function LoginPrompt() {
   return (
@@ -26,7 +26,8 @@ export default function LoginPrompt() {
         </motion.div>
         <h2 className="text-3xl font-bold mb-2">Login Required</h2>
         <p className="text-gray-600 mb-6">
-          Please log in to create a new posting or sign up if you don&apos;t have an account.
+          Please log in to create a new posting or sign up if you don&apos;t
+          have an account.
         </p>
         <div className="space-y-4">
           <Button size="lg" className="w-full" asChild>
@@ -60,15 +61,10 @@ export default function LoginPrompt() {
       >
         By logging in, you agree to our{" "}
         <Link href="/terms" className="underline hover:text-primary">
-          Terms of Service
-        </Link>{" "}
-        and{" "}
-        <Link href="/privacy" className="underline hover:text-primary">
-          Privacy Policy
+          Terms and Conditons
         </Link>
         .
       </motion.p>
     </motion.div>
-  )
+  );
 }
-

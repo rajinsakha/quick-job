@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { signUpFormSchema } from "@/schema/auth";
+import { signUpFormSchema } from "@/schema/auth-schema";
 import { z } from "zod";
 
 import {
@@ -13,22 +14,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "../../ui/form";
+import { Input } from "../../ui/input";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import Link from "next/link";
-import { Separator } from "../ui/separator";
-import { Checkbox } from "../ui/checkbox";
+import { Separator } from "../../ui/separator";
+import { Checkbox } from "../../ui/checkbox";
 import { motion } from "framer-motion";
+import { register } from "@/services/auth-api";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { deleteKeys } from "@/lib/utils";
 type UserFormValue = z.infer<typeof signUpFormSchema>;
 
 export default function SignUpForm() {
-  //   const dispatch = useAppDispatch();
-  //   console.log(dispatch);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<UserFormValue>({
     resolver: zodResolver(signUpFormSchema),
@@ -36,52 +41,76 @@ export default function SignUpForm() {
       email: "",
       password: "",
       confirm_password: "",
+      username:"", 
+    
       accept_terms: false,
     },
   });
 
   const onSubmit = async (data: UserFormValue) => {
-    console.log(data);
-    // try {
-    setLoading(true);
-    //   const res = await loginApi(data);
-    //   if (res.status === 200) {
-    //     dispatch(setToken(res.data.token));
-    //   }
-    //   toast({
-    //     variant: "default",
-    //     description: "Successfully Logged In!",
-    //   });
-    //   localStorage.setItem("url", res.data.domain.domain);
-    //   window.location.href = "/choose-org";
-    // } catch (error: any) {
-    //   toast({
-    //     variant: "destructive",
-    //     description: error?.response?.data?.error || error?.message,
-    //   });
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      const submissionData = deleteKeys(data, [
+        "accept_terms",
+        "confirm_password",
+      ]);
+      const res = await register(submissionData);
+      if (res.status === 200) {
+        toast({
+          variant: "default",
+          title: "User Account Created",
+          description: "User has been successfully created.",
+        });
+        router.push("/login");
+      }
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        description: error?.response?.data?.error || error?.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    className="w-full max-w-md mx-auto space-y-6">
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-md mx-auto space-y-2"
+    >
       <div className="flex flex-col space-y-2 ">
         <h1 className="text-3xl font-semibold tracking-tight">Register</h1>
         <p className="text-sm text-muted-foreground">
-         Welcome to WorkSpace Nepal
+          Welcome to WorkSpace Nepal
         </p>
       </div>
       <Separator />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 w-full"
+          className="space-y-2 w-full"
         >
+           <FormField
+            control={form.control}
+            name="username"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
+                <FormControl>
+                  <Input
+                 
+                    placeholder="Enter your full name"
+                    disabled={loading}
+                    {...field}
+                    
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="email"
@@ -94,13 +123,14 @@ export default function SignUpForm() {
                     placeholder="Enter your email..."
                     disabled={loading}
                     {...field}
-                    className="h-10"
+                    
                   />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
+         
           <FormField
             control={form.control}
             name="password"
@@ -114,7 +144,7 @@ export default function SignUpForm() {
                       placeholder="Password..."
                       disabled={loading}
                       {...field}
-                      className="h-10"
+                      
                     />
                     <Button
                       type="button"
@@ -152,7 +182,7 @@ export default function SignUpForm() {
                       placeholder="Re-enter Password"
                       disabled={loading}
                       {...field}
-                      className="h-10"
+                      
                     />
                     <Button
                       type="button"

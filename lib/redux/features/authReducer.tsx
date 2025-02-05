@@ -9,6 +9,7 @@ type HomeState = {
   email: string;
   profileDetails: any;
   refetch: boolean;
+  isLoggedIn:boolean;
 };
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
   isPopoverClicked: false,
   email: "",
   profileDetails: {} as any,
-  refetch: false
+  refetch: false,
+  isLoggedIn: false,
 } as HomeState;
 
 export const auth = createSlice({
@@ -42,9 +44,12 @@ export const auth = createSlice({
     toggleRefetch: (state) => {
       state.refetch = !state.refetch;
     },
+    setIsLoggedIn: (state, action)=>{
+      state.isLoggedIn = action.payload
+    }
   },
 });
 
-export const { setToken, setSelectedUser, setIsPopoverClicked, setEmail , setProfileDetails, toggleRefetch} =
+export const { setToken, setSelectedUser, setIsPopoverClicked, setEmail , setProfileDetails, toggleRefetch, setIsLoggedIn} =
   auth.actions;
 export default auth.reducer;

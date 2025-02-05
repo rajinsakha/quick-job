@@ -1,16 +1,22 @@
 "use client";
 import { Button } from "@/components/ui/button";
-
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import Logo from "../ui/logo";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const MobileNav = () => {
+  const [open, setOpen] = useState(false);
   const path = usePathname();
+
+  const handleLinkClick = () => {
+    setOpen(false);
+  };
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" size="icon" className="lg:hidden">
           <MenuIcon className="h-6 w-6" />
@@ -29,7 +35,8 @@ const MobileNav = () => {
               path === "/" && "!border-primary text-primary font-medium"
             }`}
             prefetch={false}
-        >
+            onClick={handleLinkClick}
+          >
             Find Jobs
           </Link>
           <Link
@@ -38,12 +45,15 @@ const MobileNav = () => {
               path === "/rooms" && "!border-primary text-primary font-medium"
             }`}
             prefetch={false}
+            onClick={handleLinkClick}
           >
             Find Rooms
           </Link>
-          <Link href="/post" className="mt-8">
-          <Button className="rounded-full" variant='outline'>Post Jobs / Room</Button>
-        </Link>
+          <Link href="/post" className="mt-8" onClick={handleLinkClick}>
+            <Button className="rounded-full" variant="outline">
+              Post Jobs / Room
+            </Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>

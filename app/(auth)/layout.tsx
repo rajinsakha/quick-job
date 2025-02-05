@@ -1,3 +1,5 @@
+import Logo from "@/components/ui/logo";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
@@ -12,7 +14,19 @@ const RootLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
           />
         </picture>
       </div>
-      {children}
+      <div className="flex flex-col gap-4 px-8 py-4 sm:px-16">
+      <div className="flex justify-center gap-2 md:justify-start">
+        <Link href="/" className="flex items-center gap-2 font-medium">
+          <Logo />
+        </Link>
+      </div>
+      <div className="flex flex-1 items-center justify-start">
+        <div className="w-full max-w-md">
+        {children}
+        </div>
+      </div>
+      </div>
+    
     </div>
   );
 };

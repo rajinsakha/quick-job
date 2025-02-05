@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
 import { Checkbox } from "@/components/ui/checkbox";
-import { loginFormSchema } from "@/schema/auth";
+import { loginFormSchema } from "@/schema/auth-schema";
 import { z } from "zod";
 
 import {
@@ -14,22 +15,29 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "../../ui/form";
+import { Input } from "../../ui/input";
 import { EyeOffIcon, EyeIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import Link from "next/link";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
+import { setToken } from "@/lib/redux/features/authReducer";
+import { login } from "@/services/auth-api";
+import { useAppDispatch } from "@/lib/redux/hooks";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
-type UserFormValue = z.infer<typeof loginFormSchema>;
+
+export type LoginFormValue = z.infer<typeof loginFormSchema>;
 
 export default function LoginForm() {
-  //   const dispatch = useAppDispatch();
-  //   console.log(dispatch);
+  const dispatch = useAppDispatch();
+
+  const { toast } = useToast();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const form = useForm<UserFormValue>({
+  const router = useRouter();
+  const form = useForm<LoginFormValue>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: "",
@@ -46,28 +54,28 @@ export default function LoginForm() {
     }
   }, [form]);
 
-  const onSubmit = async (data: UserFormValue) => {
+  const onSubmit = async (data: LoginFormValue) => {
     console.log(data);
-    // try {
-    setLoading(true);
-    //   const res = await loginApi(data);
-    //   if (res.status === 200) {
-    //     dispatch(setToken(res.data.token));
-    //   }
-    //   toast({
-    //     variant: "default",
-    //     description: "Successfully Logged In!",
-    //   });
-    //   localStorage.setItem("url", res.data.domain.domain);
-    //   window.location.href = "/choose-org";
-    // } catch (error: any) {
-    //   toast({
-    //     variant: "destructive",
-    //     description: error?.response?.data?.error || error?.message,
-    //   });
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      const res = await login(data);
+      if (res.status === 200) {
+        dispatch(setToken(res.data.token));
+      }
+      toast({
+        variant: "default",
+        description: "Successfully Logged In!",
+      });
+      router.replace("/");
+      // window.location.href = "/choose-org";
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        description: error?.response?.data?.error || error?.message,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -165,7 +173,7 @@ export default function LoginForm() {
                 </FormItem>
               )}
             />
-            <Link href="/reset-password" className="text-sm underline-offset-4">
+            <Link href="/forgot-password" className="text-sm hover:underline underline-offset-4 hover:text-primary">
               Forgot Password?
             </Link>
           </div>
