@@ -1,34 +1,33 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
-import RoomCard from "../cards/RoomCard";
-import RoomFilters from "../filters/RoomFilters";
-import MobileFilters from "../filters/MobileFilters";
+import RoomCard from "../cards/RoomCard"
+import RoomFilters from "../filters/RoomFilters"
+import MobileFilters from "../filters/MobileFilters"
 
 const RoomSection = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-16 items-start">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-16">
       {/* Filters Section */}
-      <div className="hidden lg:block lg:col-span-1">
-        <RoomFilters />
+      <div className="hidden lg:block lg:w-1/4 shrink-0">
+        <div className="sticky top-24">
+          <ScrollArea className="h-[calc(100vh-8rem)] pr-4">
+            <RoomFilters />
+          </ScrollArea>
+        </div>
       </div>
 
-      <div className="lg:hidden">
+      <div className="lg:hidden w-full mb-6">
         <MobileFilters type="Room" />
       </div>
 
       {/* Job Listings Section */}
-      <div className="col-span-1 lg:col-span-2 space-y-6 w-full">
+      <div className="flex-1 space-y-6 w-full">
         {/* Header with Sorting */}
         <div className="flex flex-col gap-4 sm:flex-row justify-between items-center">
           <h2 className="text-lg">
             Showing: <span className="font-semibold">120 Filtered Rooms</span>
-        </h2>
+          </h2>
           <Select defaultValue="newest">
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Sort by" />
@@ -47,10 +46,16 @@ const RoomSection = () => {
           <RoomCard />
           <RoomCard />
           <RoomCard />
+          <RoomCard />
+          <RoomCard />
+          <RoomCard />
+          <RoomCard />
+          {/* Add more RoomCard components as needed */}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RoomSection;
+export default RoomSection
+

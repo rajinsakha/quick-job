@@ -21,7 +21,7 @@ import { EyeOffIcon, EyeIcon } from "lucide-react";
 import { Button } from "../../ui/button";
 import Link from "next/link";
 import { Separator } from "../../ui/separator";
-import { setToken } from "@/lib/redux/features/authReducer";
+import { setIsLoggedIn, setToken } from "@/lib/redux/features/authReducer";
 import { login } from "@/services/auth-api";
 import { useAppDispatch } from "@/lib/redux/hooks";
 import { useToast } from "@/hooks/use-toast";
@@ -61,6 +61,7 @@ export default function LoginForm() {
       const res = await login(data);
       if (res.status === 200) {
         dispatch(setToken(res.data.token));
+        dispatch(setIsLoggedIn(true));
       }
       toast({
         variant: "default",

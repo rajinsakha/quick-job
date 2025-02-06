@@ -14,8 +14,10 @@ const useCheckToken = () => {
       setAuthToken(token);
 
       // First API call - Verify token
-      const response = await apiBase.post("/auth/check-token/", {
-        token,
+      const response = await apiBase.get("/auth/check-token/", {
+        headers: {
+          Authorization: `TOKEN ${token}`,
+        },
       });
       if (response.status === 200) {
         dispatch(setIsLoggedIn(true));

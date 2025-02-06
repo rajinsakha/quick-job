@@ -18,7 +18,7 @@ const Hero = ({ type, desc }: HeroProps) => {
           New {type}
         </span>
       </h1>
-      <p className="text-gray-600 mb-6 text-center">{desc}</p>
+      <p className="text-gray-600  text-center">{desc}</p>
 
       {type === "Job" ? <JobSearchForm /> : <RoomSearchForm />}
     </section>
