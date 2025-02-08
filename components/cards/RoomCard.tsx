@@ -22,10 +22,10 @@ const RoomCard = () => {
         <div className="flex justify-between items-start mb-2">
           <div>
             <h3 className="font-semibold text-lg">Cozy Studio Apartment</h3>
-            <p className="text-muted-foreground">Downtown, San Francisco</p>
+            <p className="text-muted-foreground">Tinkune, Kathmandu</p>
           </div>
           <div className="text-right">
-            <p className="font-semibold text-lg">$1,200</p>
+            <p className="font-semibold text-lg">Rs 12,000</p>
             <p className="text-sm text-muted-foreground">per month</p>
           </div>
         </div>

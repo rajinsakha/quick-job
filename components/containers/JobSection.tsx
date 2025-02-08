@@ -52,7 +52,7 @@ const JobSection = () => {
             id={1}
             company="ZAPIER"
             title="Head Tech - Simulation and Modelling"
-            location="Mumbai"
+            location="Kathmandu"
             type="Fulltime"
             timeAgo="3 hrs ago"
             isNew
@@ -61,47 +61,30 @@ const JobSection = () => {
             id={2}
             company="QUICKBOOKS"
             title="Software Developer/Sr. Software Developer"
-            location="Bangalore"
+            location="Bhaktapur"
             type="Fulltime"
             timeAgo="12 hrs ago"
             isFeatured
           />
            <JobCard
-            id={1}
+            id={3}
             company="ZAPIER"
             title="Head Tech - Simulation and Modelling"
-            location="Mumbai"
+            location="Kathmandu"
             type="Fulltime"
             timeAgo="3 hrs ago"
             isNew
           />
           <JobCard
-            id={2}
+            id={4}
             company="QUICKBOOKS"
             title="Software Developer/Sr. Software Developer"
-            location="Bangalore"
+            location="Bhaktapur"
             type="Fulltime"
             timeAgo="12 hrs ago"
             isFeatured
           />
-           <JobCard
-            id={1}
-            company="ZAPIER"
-            title="Head Tech - Simulation and Modelling"
-            location="Mumbai"
-            type="Fulltime"
-            timeAgo="3 hrs ago"
-            isNew
-          />
-          <JobCard
-            id={2}
-            company="QUICKBOOKS"
-            title="Software Developer/Sr. Software Developer"
-            location="Bangalore"
-            type="Fulltime"
-            timeAgo="12 hrs ago"
-            isFeatured
-          />
+        
         
         </div>
       </div>

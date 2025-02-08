@@ -4,18 +4,21 @@ export interface JobCategory {
   name: string;
   count: number;
   subcategories: { [key: string]: number };
+
 }
 
 export interface JobFilters {
   categories: string[];
   employmentTypes: string[];
-  seniority: string;
+ 
+  refetchDropdown: boolean
+
 }
 
 const initialState: JobFilters = {
   categories: [],
   employmentTypes: [],
-  seniority: "",
+  refetchDropdown: false
 };
 
 const filters = createSlice({
@@ -28,12 +31,12 @@ const filters = createSlice({
     setEmploymentTypes: (state, action: PayloadAction<string[]>) => {
       state.employmentTypes = action.payload;
     },
-    setSeniority: (state, action: PayloadAction<string>) => {
-      state.seniority = action.payload;
+    toggleRefetchDropdown: (state) => {
+      state.refetchDropdown = !state.refetchDropdown;
     },
   },
 });
 
-export const { setCategories, setEmploymentTypes, setSeniority } =
+export const { setCategories, setEmploymentTypes, toggleRefetchDropdown } =
   filters.actions;
 export default filters.reducer;

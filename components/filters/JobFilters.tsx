@@ -36,6 +36,7 @@ import {
   // setLanguage,
   // setSeniority,
 } from "@/lib/redux/features/filterReducer";
+import useFetchDropdown from "@/hooks/use-fetch-dropdown";
 
 const formSchema = z.object({
   categories: z.array(z.string()),
@@ -105,6 +106,13 @@ const jobCategories: JobCategory[] = [
 
 export default function JobFilters() {
   // const dispatch = useAppDispatch();
+
+  const {data:categories} = useFetchDropdown<JobCategory>("/work/categories/");
+
+  console.log(categories);
+
+
+
   const filters = useAppSelector((state) => state.filterReducer);
   const [openCategories, setOpenCategories] = React.useState<string[]>([]);
 

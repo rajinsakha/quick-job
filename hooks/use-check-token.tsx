@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { apiBase, setAuthToken } from "@/constants/axiosInstance";
 import { setIsLoggedIn } from "@/lib/redux/features/authReducer";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
