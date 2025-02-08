@@ -6,9 +6,9 @@ const RoomCard = () => {
       <div className="relative aspect-video">
         <picture>
           <img
-            src="/placeholder.svg"
+            src="https://design-milk.com/images/2020/10/TAK-office-360-Studio-Apartment-Rivne-1.jpg"
             alt="Room"
-            className="object-cover w-[300px] h-[300px]"
+            className="object-cover w-full h-[300px]"
           />
         </picture>
 

@@ -19,7 +19,7 @@ const formSchema = z.object({
   roomType: z.string().optional(),
   availability: z.string().optional(),
   bedrooms: z.string().optional(),
-  bathrooms: z.string().optional(),
+
 })
 
 const roomCategories = [
@@ -87,7 +87,7 @@ export default function RoomFilters() {
       roomType: "",
       availability: "",
       bedrooms: "",
-      bathrooms: "",
+   
     },
   })
 
@@ -243,20 +243,7 @@ export default function RoomFilters() {
           />
         </div>
 
-        <div className="space-y-4">
-          <h2 className="font-semibold">Bathrooms</h2>
-          <FormField
-            control={form.control}
-            name="bathrooms"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input type="number" placeholder="Number of bathrooms" {...field} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-        </div>
+      
       </form>
     </Form>
   )

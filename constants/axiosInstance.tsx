@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseURL = `https://wspace-backend-plqt.vercel.app/api/`;
+export const baseURL = `https://wspace-backend.vercel.app/api/`;
 // export const imageURL = `https://${dynamicUrl}`;
 
 export const apiBase = axios.create({
