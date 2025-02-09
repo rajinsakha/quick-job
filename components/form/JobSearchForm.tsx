@@ -82,7 +82,7 @@ export default function JobSearchForm() {
                 <FormItem>
                   <FormControl>
                     <Input
-                      placeholder="City, state or zip"
+                      placeholder="City, District or Province"
                       className="pl-10 border-none focus-visible:ring-0 shadow-none"
                       {...field}
                     />
